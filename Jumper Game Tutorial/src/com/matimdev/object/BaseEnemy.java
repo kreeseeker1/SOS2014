@@ -17,7 +17,7 @@ import com.matimdev.manager.ResourcesManager;
  * @author www.matim-dev.com
  * @version 1.0
  */
-public abstract class Player extends AnimatedSprite
+public abstract class BaseEnemy extends AnimatedSprite
 {
 	// ---------------------------------------------
 	// VARIABLES
@@ -33,7 +33,7 @@ public abstract class Player extends AnimatedSprite
 	// CONSTRUCTOR
 	// ---------------------------------------------
 	
-	public Player(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
+	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
 	{
 		super(pX, pY, ResourcesManager.getInstance().player_region, vbo);
 		createPhysics(camera, physicsWorld);
