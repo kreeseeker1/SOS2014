@@ -12,11 +12,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.sos2014.manager.ResourcesManager;
 
-/**
- * @author Mateusz Mysliwiec
- * @author www.matim-dev.com
- * @version 1.0
- */
 public abstract class BaseEnemy extends AnimatedSprite
 {
 	// ---------------------------------------------

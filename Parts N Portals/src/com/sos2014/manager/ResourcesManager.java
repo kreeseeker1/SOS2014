@@ -21,11 +21,6 @@ import android.graphics.Color;
 
 import com.sos2014.GameActivity;
 
-/**
- * @author Mateusz Mysliwiec
- * @author www.matim-dev.com
- * @version 1.0
- */
 public class ResourcesManager
 {
 	//---------------------------------------------

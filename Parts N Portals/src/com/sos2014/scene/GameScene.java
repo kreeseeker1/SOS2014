@@ -44,11 +44,6 @@ import com.sos2014.manager.SceneManager;
 import com.sos2014.manager.SceneManager.SceneType;
 import com.sos2014.object.Player;
 
-/**
- * @author Mateusz Mysliwiec
- * @author www.matim-dev.com
- * @version 1.0
- */
 public class GameScene extends BaseScene implements IOnSceneTouchListener
 {
 	private int score = 0;

@@ -10,11 +10,7 @@ import android.app.Activity;
 import com.sos2014.manager.ResourcesManager;
 import com.sos2014.manager.SceneManager.SceneType;
 
-/**
- * @author Mateusz Mysliwiec
- * @author www.matim-dev.com
- * @version 1.0
- */
+
 public abstract class BaseScene extends Scene
 {
 	//---------------------------------------------

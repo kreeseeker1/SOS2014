@@ -19,11 +19,6 @@ import android.view.KeyEvent;
 import com.sos2014.manager.ResourcesManager;
 import com.sos2014.manager.SceneManager;
 
-/**
- * @author Mateusz Mysliwiec
- * @author www.matim-dev.com
- * @version 1.0
- */
 public class GameActivity extends BaseGameActivity
 {
 	private BoundCamera camera;

@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<level width="1400" height="780">	
-	<entity x="100" y="100" type="platform1"/>
-	<entity x="200" y="200" type="platform1"/>
-<entity x="300" y="200" type="platform1"/>
-<entity x="400" y="200" type="platform1"/>
-<entity x="500" y="200" type="platform1"/>
-<entity x="600" y="200" type="platform1"/>
-<entity x="700" y="200" type="platform1"/>
-<entity x="800" y="200" type="platform1"/>
-<entity x="900" y="200" type="platform1"/>
+<level width="1400" height="780">
+<entity x="50" y="100" type="platform1"/>	
+<entity x="100" y="100" type="platform1"/>
+<entity x="200" y="100" type="platform1"/>
+<entity x="300" y="100" type="platform1"/>
+<entity x="400" y="100" type="platform1"/>
+<entity x="500" y="100" type="platform1"/>
+<entity x="600" y="100" type="platform1"/>
+<entity x="700" y="100" type="platform1"/>
+<entity x="800" y="100" type="platform1"/>
+<entity x="900" y="100" type="platform1"/>
 
-	<entity x="400" y="200" type="platform2"/>
-	<entity x="530" y="200" type="platform2"/>
-	<entity x="660" y="200" type="platform2"/>
-	<entity x="880" y="240" type="platform3"/>
-	<entity x="1100" y="330" type="platform3"/>
-	<entity x="400" y="270" type="coin"/>
-	<entity x="500" y="400" type="coin"/>
-	<entity x="600" y="400" type="coin"/>
-	<entity x="1280" y="550" type="levelComplete"/>
+<entity x="1000" y="100" type="platform1"/>	
+<entity x="1100" y="100" type="platform1"/>
+<entity x="1200" y="100" type="platform1"/>
+<entity x="1300" y="100" type="platform1"/>
+<entity x="1400" y="100" type="platform1"/>
+<entity x="1500" y="100" type="platform1"/>
+<entity x="1600" y="100" type="platform1"/>
+<entity x="1700" y="100" type="platform1"/>
+<entity x="1800" y="100" type="platform1"/>
+<entity x="1900" y="100" type="platform1"/>
+
+<entity x="2000" y="100" type="platform1"/>
+<entity x="2100" y="100" type="platform1"/>
+<entity x="2200" y="100" type="platform1"/>
+<entity x="2300" y="100" type="platform1"/>
+
+	
+	<entity x="2280" y="550" type="levelComplete"/>
 	<entity x="60" y="140" type="player"/>
 </level>
