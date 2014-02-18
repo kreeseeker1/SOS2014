@@ -161,7 +161,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.platform1_region, vbom);
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("platform1");
 				} 
-				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM2))
+				/*else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM2))
 				{
 					levelObject = new Sprite(x, y, resourcesManager.platform2_region, vbom);
 					final Body body = PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF);
@@ -174,7 +174,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					final Body body = PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF);
 					body.setUserData("platform3");
 					physicsWorld.registerPhysicsConnector(new PhysicsConnector(levelObject, body, true, false));
-				}
+				}*/
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN))
 				{
 					levelObject = new Sprite(x, y, resourcesManager.coin_region, vbom)
