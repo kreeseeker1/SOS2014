@@ -186,7 +186,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 
 							if (player.collidesWith(this))
 							{
-								addToScore(10);
+								//addToScore(10);
 								this.setVisible(false);
 								this.setIgnoreUpdate(true);
 							}
@@ -269,7 +269,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	
 	private void createBackground()
 	{
-		setBackground(new Background(Color.BLUE));
+		setBackground(new Background(Color.BLACK));
 	}
 	
 	private void addToScore(int i)

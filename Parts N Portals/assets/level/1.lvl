@@ -29,5 +29,5 @@
 
 	
 	<entity x="2280" y="550" type="levelComplete"/>
-	<entity x="60" y="140" type="player"/>
+	<entity x="200" y="200" type="player"/>
 </level>
