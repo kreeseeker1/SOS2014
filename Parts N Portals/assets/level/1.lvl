@@ -9,7 +9,11 @@
 <entity x="600" y="100" type="platform1"/>
 <entity x="700" y="100" type="platform1"/>
 <entity x="800" y="100" type="platform1"/>
+
 <entity x="900" y="100" type="platform1"/>
+
+
+
 
 <entity x="1000" y="100" type="platform1"/>	
 <entity x="1100" y="100" type="platform1"/>
