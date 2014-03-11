@@ -21,6 +21,7 @@ public abstract class BaseEnemy extends AnimatedSprite
 	private Body body;
 	
 	private boolean canRun = false;
+	private boolean left = false;
 	
 	private int footContacts = 0;
 	
@@ -30,7 +31,7 @@ public abstract class BaseEnemy extends AnimatedSprite
 	
 	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
 	{
-		super(pX, pY, ResourcesManager.getInstance().player_region, vbo);
+		super(pX, pY, ResourcesManager.getInstance().enemy, vbo);
 		createPhysics(camera, physicsWorld);
 		camera.setChaseEntity(this);
 		
@@ -44,7 +45,7 @@ public abstract class BaseEnemy extends AnimatedSprite
 	{		
 		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 
-		body.setUserData("player");
+		body.setUserData("enemy");
 		body.setFixedRotation(true);
 		
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false)
@@ -55,6 +56,8 @@ public abstract class BaseEnemy extends AnimatedSprite
 				super.onUpdate(pSecondsElapsed);
 				camera.onUpdate(0.1f);
 				
+				
+				
 				if (getY() <= 0)
 				{					
 					onDie();
@@ -62,7 +65,11 @@ public abstract class BaseEnemy extends AnimatedSprite
 				
 				if (canRun)
 				{	
-					body.setLinearVelocity(new Vector2(5, body.getLinearVelocity().y)); 
+					body.setLinearVelocity(new Vector2(3, body.getLinearVelocity().y)); 
+				}
+				if (left)
+				{
+					body.setLinearVelocity(new Vector2(-3, body.getLinearVelocity().y)); 
 				}
 	        }
 		});
@@ -72,9 +79,14 @@ public abstract class BaseEnemy extends AnimatedSprite
 	{
 		canRun = true;
 		
-		final long[] PLAYER_ANIMATE = new long[] { 100 };
+		final long[] PLAYER_ANIMATE = new long[] { 100,100,100 };
 		
-		animate(PLAYER_ANIMATE, 0, 0, false);
+		animate(PLAYER_ANIMATE, 0, 2, false);
+	}
+	
+	public void setLeft()
+	{
+		
 	}
 	
 	public void jump()

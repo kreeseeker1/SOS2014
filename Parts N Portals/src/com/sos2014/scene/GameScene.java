@@ -42,6 +42,7 @@ import com.sos2014.extras.LevelCompleteWindow;
 import com.sos2014.extras.LevelCompleteWindow.StarsCount;
 import com.sos2014.manager.SceneManager;
 import com.sos2014.manager.SceneManager.SceneType;
+import com.sos2014.object.BaseEnemy;
 import com.sos2014.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
@@ -61,11 +62,18 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM1 = "platform1";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM2 = "platform2";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM3 = "platform3";
-	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN = "coin";
+	
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATL = "platformleft";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATM = "platformmiddle";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATR = "platformright";
+	
+	//private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN = "coin";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER = "player";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY = "enemy";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
 	
 	private Player player;
+	private BaseEnemy enemy;
 	
 	private Text gameOverText;
 	private boolean gameOverDisplayed = false;
@@ -161,6 +169,24 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.platform1_region, vbom);
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("platform1");
 				} 
+				
+				else if(type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATL))
+						{
+						levelObject = new Sprite(x,y,resourcesManager.platformleft,vbom);
+						PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("platformleft");
+						}
+				
+				else if(type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATM))
+				{
+				levelObject = new Sprite(x,y,resourcesManager.platformmiddle,vbom);
+				PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("platformmiddle");
+				}
+				
+				else if(type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATR))
+				{
+				levelObject = new Sprite(x,y,resourcesManager.platformright,vbom);
+				PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("platformright");
+				}
 				/*else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLATFORM2))
 				{
 					levelObject = new Sprite(x, y, resourcesManager.platform2_region, vbom);
@@ -175,7 +201,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					body.setUserData("platform3");
 					physicsWorld.registerPhysicsConnector(new PhysicsConnector(levelObject, body, true, false));
 				}*/
-				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN))
+				/*else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN))
 				{
 					levelObject = new Sprite(x, y, resourcesManager.coin_region, vbom)
 					{
@@ -193,7 +219,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 						}
 					};
 					levelObject.registerEntityModifier(new LoopEntityModifier(new ScaleModifier(1, 1, 1.3f)));
-				}	
+				}*/	
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER))
 				{
 					player = new Player(x, y, vbom, camera, physicsWorld)
@@ -208,6 +234,41 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 						}
 					};
 					levelObject = player;
+				}
+				
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY))
+				{
+					enemy = new BaseEnemy(x, y, vbom, camera, physicsWorld)
+					{
+						@Override
+						protected void onManagedUpdate(float pSecondsElapsed) 
+						{
+							super.onManagedUpdate(pSecondsElapsed);
+
+							if(player.getX() < this.getX())
+							{
+								this.setLeft();
+							}
+							else
+							{
+								this.setRunning();
+							}
+							if (player.collidesWith(this))
+							{
+								//levelCompleteWindow.display(StarsCount.TWO, GameScene.this, camera);
+								//this.setVisible(false);
+								//this.setIgnoreUpdate(true);
+							}
+						}
+
+						@Override
+						public void onDie() {
+							// TODO Auto-generated method stub
+							
+						}
+					};
+					
+					levelObject = enemy;
 				}
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE))
 				{

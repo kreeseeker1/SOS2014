@@ -50,10 +50,20 @@ public class ResourcesManager
 	
 	// Game Texture Regions
 	public ITextureRegion platform1_region;
+	public ITextureRegion platform1_regionr;
+	
+	public ITextureRegion platformleft;
+	public ITextureRegion platformmiddle;
+	public ITextureRegion platformright;
+	
+	
 /*	public ITextureRegion platform2_region;
 	public ITextureRegion platform3_region;*/
 	public ITextureRegion coin_region;
 	public ITiledTextureRegion player_region;
+	public ITiledTextureRegion player_regionl;
+	public ITiledTextureRegion enemy;
+	public ITiledTextureRegion enemyl;
 	
 	private BitmapTextureAtlas splashTextureAtlas;
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
@@ -119,10 +129,19 @@ public class ResourcesManager
         gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         
        	platform1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform1.png");
+       	
+       	platformleft = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform/platform_left.png");
+       	platformmiddle = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform/platform_middle.png");
+       	platformright = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform/platform_right.png");
+       	
        	/*platform2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform2.png");
        	platform3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform3.png");*/
-        coin_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "coin.png");
-        player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 2, 1);
+      //  coin_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "coin.png");
+        player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "pcss2.png", 7, 1);
+        player_regionl = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "pcss2r.png", 7, 1);
+        
+        enemy = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "ess1.png", 3, 1);
+        enemyl = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "ess1r.png", 3, 1);
         
         complete_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "levelCompleteWindow.png");
         complete_stars_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "star.png", 2, 1);
