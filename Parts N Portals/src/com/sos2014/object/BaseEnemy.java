@@ -12,101 +12,99 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.sos2014.manager.ResourcesManager;
 
-public abstract class BaseEnemy extends AnimatedSprite
-{
+public abstract class BaseEnemy extends AnimatedSprite {
 	// ---------------------------------------------
 	// VARIABLES
 	// ---------------------------------------------
-	
+
 	private Body body;
-	
-	private boolean canRun = false;
+
+	private boolean right = false;
 	private boolean left = false;
-	
+
 	private int footContacts = 0;
-	
+
 	// ---------------------------------------------
 	// CONSTRUCTOR
 	// ---------------------------------------------
-	
-	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
-	{
+
+	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo,
+			Camera camera, PhysicsWorld physicsWorld) {
 		super(pX, pY, ResourcesManager.getInstance().enemy, vbo);
 		createPhysics(camera, physicsWorld);
 		camera.setChaseEntity(this);
-		
+
 	}
-	
+
 	// ---------------------------------------------
 	// CLASS LOGIC
 	// ---------------------------------------------
-	
-	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld)
-	{		
-		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+
+	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) {
+		body = PhysicsFactory.createBoxBody(physicsWorld, this,
+				BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 
 		body.setUserData("enemy");
 		body.setFixedRotation(true);
-		
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body, true, false)
-		{
+
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body,
+				true, false) {
 			@Override
-	        public void onUpdate(float pSecondsElapsed)
-	        {
+			public void onUpdate(float pSecondsElapsed) {
 				super.onUpdate(pSecondsElapsed);
 				camera.onUpdate(0.1f);
-				
-				
-				
-				if (getY() <= 0)
-				{					
+
+				if (getY() <= 0) {
 					onDie();
 				}
-				
-				if (canRun)
-				{	
-					body.setLinearVelocity(new Vector2(3, body.getLinearVelocity().y)); 
+
+				if (right) {
+					body.setLinearVelocity(new Vector2(3, body
+							.getLinearVelocity().y));
 				}
-				if (left)
-				{
-					body.setLinearVelocity(new Vector2(-3, body.getLinearVelocity().y)); 
+				if (left) {
+					body.setLinearVelocity(new Vector2(-3, body
+							.getLinearVelocity().y));
 				}
-	        }
+			}
 		});
 	}
-	
-	public void setRunning()
-	{
-		canRun = true;
-		
-		final long[] PLAYER_ANIMATE = new long[] { 100,100,100 };
-		
+
+	public void setRunning() {
+		right = true;
+		left =false;
+
+		final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
+
 		animate(PLAYER_ANIMATE, 0, 2, false);
 	}
-	
-	public void setLeft()
-	{
-		
+
+	public void animateMe() {
+		final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
+
+		animate(PLAYER_ANIMATE, 0, 2, false);
 	}
-	
-	public void jump()
-	{
-		if (footContacts < 1) 
-		{
-			return; 
+
+	public void setLeft() {
+		right = false;
+		left = true;
+
+	}
+
+	public void jump() {
+		if (footContacts < 1) {
+			return;
 		}
-		body.setLinearVelocity(new Vector2(body.getLinearVelocity().x, 12)); 
+		body.setLinearVelocity(new Vector2(body.getLinearVelocity().x, 12));
 	}
-	
-	public void increaseFootContacts()
-	{
+
+	public void increaseFootContacts() {
 		footContacts++;
 	}
-	
-	public void decreaseFootContacts()
-	{
+
+	public void decreaseFootContacts() {
 		footContacts--;
 	}
-	
+
 	public abstract void onDie();
 }

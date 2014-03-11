@@ -21,7 +21,8 @@ public abstract class Player extends AnimatedSprite
 	
 	private Body body;
 	
-	private boolean canRun = false;
+	private boolean right = false;
+	private boolean left = false;
 	
 	private int footContacts = 0;
 	
@@ -60,9 +61,13 @@ public abstract class Player extends AnimatedSprite
 					onDie();
 				}
 				
-				if (canRun)
+				if (right)
 				{	
 					body.setLinearVelocity(new Vector2(5, body.getLinearVelocity().y)); 
+				}
+				if(left)
+				{
+					body.setLinearVelocity(new Vector2(-5, body.getLinearVelocity().y)); 
 				}
 	        }
 		});
@@ -70,11 +75,18 @@ public abstract class Player extends AnimatedSprite
 	
 	public void setRunning()
 	{
-		canRun = true;
+		right = true;
+		left = false;
 		
 		final long[] PLAYER_ANIMATE = new long[] { 100,100,100,100,100,100,100 };
 		
 		animate(PLAYER_ANIMATE, 0, 6, true);
+	}
+	
+	public void setLeft() {
+		right = false;
+		left = true;
+
 	}
 	
 	public void jump()

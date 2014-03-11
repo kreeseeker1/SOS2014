@@ -121,12 +121,17 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	{
 		if (pSceneTouchEvent.isActionDown())
 		{
-			if (!firstTouch)
+			if (pSceneTouchEvent.getX() > player.getX())
 			{
 				player.setRunning();
 				firstTouch = true;
 			}
 			else
+			{
+				player.setLeft();
+			}
+			
+			if(pSceneTouchEvent.getY() > player.getY())
 			{
 				player.jump();
 			}
@@ -244,12 +249,14 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 						protected void onManagedUpdate(float pSecondsElapsed) 
 						{
 							super.onManagedUpdate(pSecondsElapsed);
+							
+							this.animateMe();
 
 							if(player.getX() < this.getX())
 							{
 								this.setLeft();
 							}
-							else
+							else if (player.getX() > this.getX())
 							{
 								this.setRunning();
 							}
@@ -258,6 +265,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 								//levelCompleteWindow.display(StarsCount.TWO, GameScene.this, camera);
 								//this.setVisible(false);
 								//this.setIgnoreUpdate(true);
+								//player.onDie();
 							}
 						}
 
