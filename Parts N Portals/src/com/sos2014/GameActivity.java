@@ -18,7 +18,7 @@ import android.view.KeyEvent;
 
 import com.sos2014.manager.ResourcesManager;
 import com.sos2014.manager.SceneManager;
-
+//This is the game activity and is responsible for setting up the camera
 public class GameActivity extends BaseGameActivity
 {
 	private BoundCamera camera;
@@ -35,10 +35,10 @@ public class GameActivity extends BaseGameActivity
 		EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), this.camera);
 		engineOptions.getAudioOptions().setNeedsMusic(true).setNeedsSound(true);
 		engineOptions.getRenderOptions().getConfigChooserOptions().setRequestedMultiSampling(true);
-		engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);
+		engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);//Keep Screen on while playing
 		return engineOptions;
 	}
-	
+	//Check for touch Activity
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
 	{  
@@ -51,11 +51,12 @@ public class GameActivity extends BaseGameActivity
 
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws IOException
 	{
+		//The oncreate for resources works with the engine object, the camera object, and the vertexBuffer object manager
 		ResourcesManager.prepareManager(mEngine, this, camera, getVertexBufferObjectManager());
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-	public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws IOException
+	public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws IOException //Not sure But I think these are extended/Overridden versions of default methods
 	{
 		SceneManager.getInstance().createSplashScene(pOnCreateSceneCallback);
 	}
