@@ -10,7 +10,7 @@ import android.app.Activity;
 import com.sos2014.manager.ResourcesManager;
 import com.sos2014.manager.SceneManager.SceneType;
 
-
+//set up some global variables
 public abstract class BaseScene extends Scene
 {
 	//---------------------------------------------

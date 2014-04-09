@@ -56,7 +56,7 @@ public class SceneManager
 	
 	public void setScene(SceneType sceneType)
 	{
-		switch (sceneType)
+		switch (sceneType)//This looks like we could get some serious mileage out of this switch set up for additional scenes
 		{
 			case SCENE_MENU:
 				setScene(menuScene);
@@ -84,7 +84,7 @@ public class SceneManager
         disposeSplashScene();
 	}
 	
-	public void createSplashScene(OnCreateSceneCallback pOnCreateSceneCallback)
+	public void createSplashScene(OnCreateSceneCallback pOnCreateSceneCallback)//These kind of methods are pretty self explanatory
 	{
 		ResourcesManager.getInstance().loadSplashScreen();
 		splashScene = new SplashScene();
@@ -92,14 +92,14 @@ public class SceneManager
 		pOnCreateSceneCallback.onCreateSceneFinished(splashScene);
 	}
 	
-	private void disposeSplashScene()
+	private void disposeSplashScene()//Removes used resources on destruction of scene
 	{
 		ResourcesManager.getInstance().unloadSplashScreen();
 		splashScene.disposeScene();
 		splashScene = null;
 	}
 	
-	public void loadGameScene(final Engine mEngine)
+	public void loadGameScene(final Engine mEngine)//This method can be adapted for each unique level I think
 	{
 		setScene(loadingScene);
 		ResourcesManager.getInstance().unloadMenuTextures();
@@ -110,7 +110,7 @@ public class SceneManager
             	mEngine.unregisterUpdateHandler(pTimerHandler);
             	ResourcesManager.getInstance().loadGameResources();
         		gameScene = new GameScene();
-        		setScene(gameScene);
+        		setScene(gameScene);//Launches scene
             }
 		}));
 	}
@@ -126,7 +126,7 @@ public class SceneManager
             {
             	mEngine.unregisterUpdateHandler(pTimerHandler);
             	ResourcesManager.getInstance().loadMenuTextures();
-        		setScene(menuScene);
+        		setScene(menuScene);//Launches scene
             }
 		}));
 	}

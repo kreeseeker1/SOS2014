@@ -1,5 +1,5 @@
 package com.sos2014.extras;
-
+//Pre created success and/or level complete window.
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;

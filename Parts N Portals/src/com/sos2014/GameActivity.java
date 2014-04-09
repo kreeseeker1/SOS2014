@@ -18,7 +18,7 @@ import android.view.KeyEvent;
 
 import com.sos2014.manager.ResourcesManager;
 import com.sos2014.manager.SceneManager;
-//This is the game activity and is responsible for setting up the camera
+//This is the game activity and is responsible for setting up the camera and Engine and the menu scene
 public class GameActivity extends BaseGameActivity
 {
 	private BoundCamera camera;
@@ -26,7 +26,7 @@ public class GameActivity extends BaseGameActivity
 	@Override
 	public Engine onCreateEngine(EngineOptions pEngineOptions) 
 	{
-		return new LimitedFPSEngine(pEngineOptions, 60);
+		return new LimitedFPSEngine(pEngineOptions, 60); //Declaration an implementation of Engine.
 	}
 	
 	public EngineOptions onCreateEngineOptions()
@@ -77,7 +77,7 @@ public class GameActivity extends BaseGameActivity
 	@Override
 	protected void onDestroy()
 	{
-		super.onDestroy();
+		super.onDestroy();//Engine destruction?
 		System.exit(0);	
 	}
 }

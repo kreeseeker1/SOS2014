@@ -92,7 +92,11 @@ public class ResourcesManager
 	
 	private void loadMenuGraphics()
 	{
-		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
+		//
+		//Connecting our loaded resources to variable names for the menu scene
+		//
+		
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");//Set base path
         menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         menu_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_background.png");
         play_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "play.png");
@@ -111,11 +115,12 @@ public class ResourcesManager
 	
 	private void loadMenuAudio()
 	{
-		
+		//Not used yet
 	}
 	
 	private void loadMenuFonts()
 	{
+		//menu font loader
 		FontFactory.setAssetBasePath("font/");
 		final ITexture mainFontTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
@@ -125,6 +130,10 @@ public class ResourcesManager
 
 	private void loadGameGraphics()
 	{
+		//
+		//This is where the majority of the graphics and all the sprite sheets are loaded.
+		//
+		
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
         gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         
@@ -159,12 +168,12 @@ public class ResourcesManager
 	
 	private void loadGameFonts()
 	{
-		
+		//Not used yet
 	}
 	
 	private void loadGameAudio()
 	{
-		
+		//Not used yet
 	}
 	
 	public void unloadGameTextures()
@@ -174,6 +183,7 @@ public class ResourcesManager
 	
 	public void loadSplashScreen()
 	{
+		//This whole thing is optional I think
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         splashTextureAtlas = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR);
         splash_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(splashTextureAtlas, activity, "splash.png", 0, 0);
