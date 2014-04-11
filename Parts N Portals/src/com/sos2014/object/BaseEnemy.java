@@ -19,8 +19,8 @@ public abstract class BaseEnemy extends AnimatedSprite {
 
 	private Body body;
 
-	private boolean right = false;
-	private boolean left = false;
+	private boolean goRight = false;
+	private boolean goLeft = false;
 
 	private int footContacts = 0;
 
@@ -28,8 +28,8 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	// CONSTRUCTOR
 	// ---------------------------------------------
 
-	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo,
-			Camera camera, PhysicsWorld physicsWorld) {
+	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
+	{
 		super(pX, pY, ResourcesManager.getInstance().enemy, vbo);
 		createPhysics(camera, physicsWorld);
 		camera.setChaseEntity(this);
@@ -40,39 +40,46 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	// CLASS LOGIC
 	// ---------------------------------------------
 
-	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) {
-		body = PhysicsFactory.createBoxBody(physicsWorld, this,
-				BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+	private void createPhysics(final Camera camera, PhysicsWorld physicsWorld) 
+	{
+		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
+		//dynamic bodies can collide with each other and kinematic and static bodies
 
 		body.setUserData("enemy");
-		body.setFixedRotation(true);
+		body.setFixedRotation(true); //wont tumble I assume
 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body,
 				true, false) {
 			@Override
-			public void onUpdate(float pSecondsElapsed) {
-				super.onUpdate(pSecondsElapsed);
+			public void onUpdate(float pSecondsElapsed) 
+			{
+				
+				super.onUpdate(pSecondsElapsed);//This is very important to be in this exact spot
+				
 				camera.onUpdate(0.1f);
 
-				if (getY() <= 0) {
+				if (getY() <= 0) //Body falls below bottom of scene
+				{
 					onDie();
 				}
 
-				if (right) {
-					body.setLinearVelocity(new Vector2(3, body
-							.getLinearVelocity().y));
+				if (goRight) 
+				{
+					body.setLinearVelocity(new Vector2(3, body.getLinearVelocity().y));//with the speed of 3 move right
+					//I think that this is where we could add code to get the character to face the right direction
 				}
-				if (left) {
-					body.setLinearVelocity(new Vector2(-3, body
-							.getLinearVelocity().y));
+				if (goLeft) 
+				{
+					body.setLinearVelocity(new Vector2(-3, body.getLinearVelocity().y));//with the speed f 3 move left
+					//I think that this is where we could add code to get the character to face the right direction
 				}
 			}
 		});
 	}
 
 	public void setRunning() {
-		right = true;
-		left =false;
+		goRight = true;
+		goLeft =false;
 
 		final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
 
@@ -86,8 +93,8 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	}
 
 	public void setLeft() {
-		right = false;
-		left = true;
+		goRight = false;
+		goLeft = true;
 
 	}
 
