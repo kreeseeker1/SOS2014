@@ -56,7 +56,6 @@ public abstract class BaseEnemy extends AnimatedSprite {
 			{
 				
 				super.onUpdate(pSecondsElapsed);//This is very important to be in this exact spot
-				
 				camera.onUpdate(0.1f);
 
 				if (getY() <= 0) //Body falls below bottom of scene
@@ -66,15 +65,17 @@ public abstract class BaseEnemy extends AnimatedSprite {
 
 				if (goRight) 
 				{
+					//super.onUpdate(pSecondsElapsed);
 					body.setLinearVelocity(new Vector2(3, body.getLinearVelocity().y));//with the speed of 3 move right
 					//I think that this is where we could add code to get the character to face the right direction
-					animate(ENEMY_ANIMATE, 0, 2, false);
+					//animate(ENEMY_ANIMATE, 0, 2,true);
 				}
 				if (goLeft) 
 				{
+					//super.onUpdate(pSecondsElapsed);
 					body.setLinearVelocity(new Vector2(-3, body.getLinearVelocity().y));//with the speed f 3 move left
 					//I think that this is where we could add code to get the character to face the right direction
-					animate(ENEMY_ANIMATE, 0, 2, false);
+					//animate(ENEMY_ANIMATE, 0, 2, true);
 				}
 			}
 		});
@@ -83,21 +84,23 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	public void runRight() {
 		goRight = true;
 		goLeft =false;
+		animate(ENEMY_ANIMATE, 0, 2, true);
 
 		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
-
-		animate(ENEMY_ANIMATE, 0, 2, false);
+		//super.onUpdate(pSecondsElapsed);
+	//	animate(ENEMY_ANIMATE, 0, 2, true);
 	}
 
 	public void animateMe() {
 		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
 
-		animate(ENEMY_ANIMATE, 0, 2, false);
+		animate(ENEMY_ANIMATE, 0, 2, true);
 	}
 
 	public void runLeft() {
 		goRight = false;
 		goLeft = true;
+		animate(ENEMY_ANIMATE, 0, 2, true);
 
 	}
 

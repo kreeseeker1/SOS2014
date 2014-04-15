@@ -73,7 +73,7 @@ public abstract class Player extends AnimatedSprite
 		});
 	}
 	
-	public void setRunning()
+	public void runRight()
 	{
 		right = true;
 		left = false;
@@ -83,7 +83,7 @@ public abstract class Player extends AnimatedSprite
 		animate(PLAYER_ANIMATE, 0, 6, true);
 	}
 	
-	public void setLeft() {
+	public void runLeft() {
 		right = false;
 		left = true;
 

@@ -47,7 +47,7 @@ import com.sos2014.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
 {
-	private int score = 0;
+	private int score = 100;
 	
 	private HUD gameHUD;
 	private Text scoreText;
@@ -123,12 +123,12 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		{
 			if (pSceneTouchEvent.getX() > player.getX())
 			{
-				player.setRunning();
+				player.runRight();
 				firstTouch = true;
 			}
 			else
 			{
-				player.setLeft();
+				player.runLeft();
 			}
 			
 			if(pSceneTouchEvent.getY() > player.getY())
@@ -229,6 +229,8 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 				{
 					player = new Player(x, y, vbom, camera, physicsWorld)
 					{
+						
+						
 						@Override
 						public void onDie()
 						{
@@ -252,9 +254,14 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							
 							this.animateMe();
 
+							if(score == 0)
+							{
+								onDie();
+							}
 							if(player.getX() < this.getX())
 							{
 								this.runLeft();
+								//this.jump();
 							}
 							else if (player.getX() > this.getX())
 							{
@@ -262,6 +269,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							}
 							if (player.collidesWith(this))
 							{
+								addToScore(-1);
 								//levelCompleteWindow.display(StarsCount.TWO, GameScene.this, camera);
 								//this.setVisible(false);
 								//this.setIgnoreUpdate(true);
@@ -330,7 +338,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		
 		scoreText = new Text(20, 420, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		scoreText.setAnchorCenter(0, 0);	
-		scoreText.setText("Score: 0");
+		scoreText.setText("Score: 100");
 		gameHUD.attachChild(scoreText);
 		
 		camera.setHUD(gameHUD);
