@@ -17,13 +17,14 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	// VARIABLES
 	// ---------------------------------------------
 
+	final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
 	private Body body;
 
 	private boolean goRight = false;
 	private boolean goLeft = false;
 
 	private int footContacts = 0;
-	final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
+	
 
 	// ---------------------------------------------
 	// CONSTRUCTOR
@@ -31,9 +32,10 @@ public abstract class BaseEnemy extends AnimatedSprite {
 
 	public BaseEnemy(float pX, float pY, VertexBufferObjectManager vbo, Camera camera, PhysicsWorld physicsWorld)
 	{
-		super(pX, pY, ResourcesManager.getInstance().enemy, vbo);
+		super(pX, pY, ResourcesManager.getInstance().enemy.deepCopy(), vbo);
 		createPhysics(camera, physicsWorld);
-		camera.setChaseEntity(this);
+		this.animate(ENEMY_ANIMATE,0,2,true);
+		//camera.setChaseEntity(this);
 
 	}
 
@@ -56,7 +58,7 @@ public abstract class BaseEnemy extends AnimatedSprite {
 			{
 				
 				super.onUpdate(pSecondsElapsed);//This is very important to be in this exact spot
-				camera.onUpdate(0.1f);
+				//camera.onUpdate(0.1f);
 
 				if (getY() <= 0) //Body falls below bottom of scene
 				{
@@ -84,7 +86,8 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	public void runRight() {
 		goRight = true;
 		goLeft =false;
-		animate(ENEMY_ANIMATE, 0, 2, true);
+		final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
+		//animate(ENEMY_ANIMATE, 0, 2, true);
 
 		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
 		//super.onUpdate(pSecondsElapsed);
@@ -93,14 +96,15 @@ public abstract class BaseEnemy extends AnimatedSprite {
 
 	public void animateMe() {
 		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
-
-		animate(ENEMY_ANIMATE, 0, 2, true);
-	}
+		final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
+		//animate(ENEMY_ANIMATE, 0, 2, true);
+	}//
 
 	public void runLeft() {
 		goRight = false;
 		goLeft = true;
-		animate(ENEMY_ANIMATE, 0, 2, true);
+		final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
+	//	animate(ENEMY_ANIMATE, 0, 2, true);
 
 	}
 

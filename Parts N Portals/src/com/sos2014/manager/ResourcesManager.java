@@ -2,6 +2,7 @@ package com.sos2014.manager;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.BoundCamera;
+import org.andengine.entity.scene.background.IBackground;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.texture.ITexture;
@@ -55,6 +56,8 @@ public class ResourcesManager
 	public ITextureRegion platformleft;
 	public ITextureRegion platformmiddle;
 	public ITextureRegion platformright;
+	
+	public IBackground gamebackground;
 	
 	
 /*	public ITextureRegion platform2_region;
@@ -138,6 +141,8 @@ public class ResourcesManager
         gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         
        	platform1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform1.png");
+       	
+    // gamebackground. = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "background_texture.png");
        	
        	platformleft = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform/platform_left.png");
        	platformmiddle = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform/platform_middle.png");

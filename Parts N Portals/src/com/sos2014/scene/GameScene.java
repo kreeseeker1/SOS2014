@@ -47,7 +47,7 @@ import com.sos2014.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
 {
-	private int score = 100;
+	private int life = 100;
 	
 	private HUD gameHUD;
 	private Text scoreText;
@@ -79,6 +79,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private boolean gameOverDisplayed = false;
 	
 	private boolean firstTouch = false;
+	private boolean playerIsDead = false;
 	
 	@Override
 	public void createScene()
@@ -254,9 +255,12 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							
 							this.animateMe();
 
-							if(score == 0)
+							if(life <= 0)
 							{
-								onDie();
+								player.onDie();
+								player.setVisible(false);
+								player.setIgnoreUpdate(true);
+								playerIsDead = true;
 							}
 							if(player.getX() < this.getX())
 							{
@@ -336,7 +340,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	{
 		gameHUD = new HUD();
 		
-		scoreText = new Text(20, 420, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+		scoreText = new Text(20, 420, resourcesManager.font, "Life: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		scoreText.setAnchorCenter(0, 0);	
 		scoreText.setText("Score: 100");
 		gameHUD.attachChild(scoreText);
@@ -351,8 +355,16 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	
 	private void addToScore(int i)
 	{
-		score += i;
-		scoreText.setText("Score: " + score);
+		if(playerIsDead)
+		{
+			life = 0;
+			scoreText.setText("Life: " + life + "hp");	
+		}
+		else
+		{
+		life += i;
+		scoreText.setText("Life: " + life);
+		}
 	}
 	
 	private void createPhysics()
