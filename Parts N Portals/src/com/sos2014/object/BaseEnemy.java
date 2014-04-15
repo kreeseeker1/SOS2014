@@ -23,6 +23,7 @@ public abstract class BaseEnemy extends AnimatedSprite {
 	private boolean goLeft = false;
 
 	private int footContacts = 0;
+	final long[] ENEMY_ANIMATE = new long[] { 100, 100, 100 };
 
 	// ---------------------------------------------
 	// CONSTRUCTOR
@@ -45,7 +46,7 @@ public abstract class BaseEnemy extends AnimatedSprite {
 		body = PhysicsFactory.createBoxBody(physicsWorld, this, BodyType.DynamicBody, PhysicsFactory.createFixtureDef(0, 0, 0));
 		//dynamic bodies can collide with each other and kinematic and static bodies
 
-		body.setUserData("enemy");
+		body.setUserData("enemy");    //Set the sprite image
 		body.setFixedRotation(true); //wont tumble I assume
 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this, body,
@@ -67,32 +68,34 @@ public abstract class BaseEnemy extends AnimatedSprite {
 				{
 					body.setLinearVelocity(new Vector2(3, body.getLinearVelocity().y));//with the speed of 3 move right
 					//I think that this is where we could add code to get the character to face the right direction
+					animate(ENEMY_ANIMATE, 0, 2, false);
 				}
 				if (goLeft) 
 				{
 					body.setLinearVelocity(new Vector2(-3, body.getLinearVelocity().y));//with the speed f 3 move left
 					//I think that this is where we could add code to get the character to face the right direction
+					animate(ENEMY_ANIMATE, 0, 2, false);
 				}
 			}
 		});
 	}
 
-	public void setRunning() {
+	public void runRight() {
 		goRight = true;
 		goLeft =false;
 
-		final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
+		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
 
-		animate(PLAYER_ANIMATE, 0, 2, false);
+		animate(ENEMY_ANIMATE, 0, 2, false);
 	}
 
 	public void animateMe() {
-		final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
+		//final long[] PLAYER_ANIMATE = new long[] { 100, 100, 100 };
 
-		animate(PLAYER_ANIMATE, 0, 2, false);
+		animate(ENEMY_ANIMATE, 0, 2, false);
 	}
 
-	public void setLeft() {
+	public void runLeft() {
 		goRight = false;
 		goLeft = true;
 

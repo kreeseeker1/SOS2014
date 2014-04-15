@@ -254,11 +254,11 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 
 							if(player.getX() < this.getX())
 							{
-								this.setLeft();
+								this.runLeft();
 							}
 							else if (player.getX() > this.getX())
 							{
-								this.setRunning();
+								this.runRight();
 							}
 							if (player.collidesWith(this))
 							{
